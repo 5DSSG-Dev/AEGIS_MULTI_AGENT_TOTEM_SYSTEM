@@ -27,7 +27,7 @@ Before sharing the alpha with another developer, run:
 npm run alpha:check
 ```
 
-This validates the CLI, local install flow, MCP adapter, VS Code package, and release preflight without publishing anything.
+This validates the CLI, local install flow, MCP adapter, VS Code package, Cursor/Open VSX readiness, and release preflight without publishing anything.
 
 ## 2. Start A Repository
 
@@ -133,7 +133,7 @@ The hook lives at `.git/hooks/pre-commit`, runs `aegis-totem validate`, and is l
 For a step-by-step adoption path in an existing repository, see the
 [first repository walkthrough](first-repo-walkthrough.md).
 
-## 8. Use VS Code
+## 8. Use VS Code Or Cursor
 
 Build and install the local VS Code extension package:
 
@@ -142,7 +142,7 @@ npm run vscode:qa
 code --install-extension dist/aegis-totem-vscode-0.1.1.vsix
 ```
 
-On Windows, do not double-click the `.vsix` file. That can open the Visual Studio VSIX Installer, which cannot install VS Code extensions. In VS Code, use `Extensions` -> `...` -> `Install from VSIX...`, or run the `code --install-extension` command above.
+On Windows, do not double-click the `.vsix` file. That can open the Visual Studio VSIX Installer, which cannot install VS Code extensions. In VS Code or Cursor, use `Extensions` -> `...` -> `Install from VSIX...`, or run the `code --install-extension` command above for VS Code.
 
 Open any existing repository and click `Initialize System` in the AEGIS Totem sidebar, or run `AEGIS Totem: Start` from the command palette. For local alpha VSIX testing, the extension uses its bundled CLI runtime and does not require the npm package to be published first. The extension runs `start --json`, builds the Root Totem structure, seeds Folder Totems only for existing branch folders, lists their immediate subfolder elements, creates `AGENTS.md` when absent, and opens Doctor readiness immediately after Start. The AEGIS Totem sidebar then shows visible command rows, the Root Totem, Folder Totems, and lane files. Use the command palette for:
 
@@ -155,6 +155,14 @@ Open any existing repository and click `Initialize System` in the AEGIS Totem si
 - `AEGIS: Run Doctor`
 - `AEGIS: Send Lane Message`
 - `AEGIS: Append Folder Update`
+
+Cursor uses the same VS Code-compatible VSIX path for local alpha testing. After `npm run vscode:qa`, run:
+
+```bash
+npm run cursor:qa
+```
+
+See [Cursor and Open VSX readiness](cursor-open-vsx.md) before any Cursor/Open VSX distribution work.
 
 ## 9. Use MCP Clients
 

@@ -45,6 +45,12 @@ jobs:
       - name: VS Code QA
         run: npm run vscode:qa
 
+      - name: Cursor compatibility metadata QA
+        run: npm run cursor:qa
+
+      - name: Production dependency audit
+        run: npm audit --omit=dev --audit-level=high
+
       - name: Docs QA
         run: npm run docs:qa
 

@@ -12,6 +12,7 @@ Use this checklist before a public alpha, npm publication, or IDE marketplace pu
 - [ ] `npm run local-install:qa` passes.
 - [ ] `npm run mcp:qa` passes.
 - [ ] `npm run vscode:qa` passes and produces `dist/aegis-totem-vscode-0.1.1.vsix`.
+- [ ] `npm run cursor:qa` passes after VS Code QA.
 - [ ] `npm run docs:qa` passes.
 - [ ] `npm run release:preflight` passes.
 - [ ] GitHub Actions CI passes on `main`.
@@ -103,6 +104,23 @@ Shortcut:
 
 ```bash
 npm run vscode:qa
+```
+
+## Package 4A: Cursor/Open VSX Compatibility QA
+
+- [ ] Run `npm run cursor:qa` after `npm run vscode:qa`.
+- [ ] Confirm Cursor/Open VSX readiness uses the same VS Code-compatible VSIX package, not a separate adapter codebase.
+- [ ] Confirm `docs/cursor-open-vsx.md` is current.
+- [ ] Install `dist/aegis-totem-vscode-0.1.1.vsix` in Cursor through `Extensions` -> `...` -> `Install from VSIX...`.
+- [ ] Open a temporary repository in Cursor.
+- [ ] Confirm `Initialize System` works from the AEGIS Totem sidebar.
+- [ ] Confirm Doctor readiness, List, Analytics, and Live Test Checklist panels open.
+- [ ] Confirm lane-message and Folder Totem append commands work in the temporary repository.
+
+Shortcut:
+
+```bash
+npm run cursor:qa
 ```
 
 ## Package 5: Publication Gates

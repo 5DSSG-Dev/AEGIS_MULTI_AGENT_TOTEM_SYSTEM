@@ -6,6 +6,7 @@
   "publisher": "thelight1122",
   "license": "MIT",
   "icon": "media/aegis-totem-icon.png",
+  "keywords": ["aegis", "totem", "multi-agent", "repo-memory", "cursor", "open-vsx"],
   "repository": {
     "type": "git",
     "url": "https://github.com/thelight1122/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git",

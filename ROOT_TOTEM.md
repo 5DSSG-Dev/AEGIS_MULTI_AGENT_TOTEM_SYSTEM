@@ -82,6 +82,19 @@ The repo can dogfood AEGIS Totem inside itself: initialize Totem structure, crea
 
 ## Append Log
 
+### 2026-09-25 | codex-lumin | cursor-open-vsx-readiness
+Added Cursor/Open VSX readiness as the next thin-adapter path on top of the existing VS Code extension.
+
+- Added `docs/cursor-open-vsx.md` with the local Cursor smoke path and Open VSX publication gate.
+- Added `npm run cursor:qa` to verify VSIX metadata and Cursor/Open VSX documentation.
+- Added Cursor/Open VSX readiness to `npm run alpha:check`.
+- Updated README, quickstart, release checklist, draft alpha release notes, VS Code README, and extension metadata.
+- Kept Cursor as a compatibility and distribution target for the VS Code-compatible VSIX, not a separate adapter codebase.
+- No Open VSX publication, VS Code Marketplace publication, GitHub Release, npm publish, deployment, signing, install, or trust mutation was performed.
+
+#### Distilled Lesson
+The strongest next surface after VS Code is Cursor through the same VSIX/Open VSX path. That preserves one canonical adapter while reaching the AI-native editor audience without splitting AEGIS Totem into separate products.
+
 ### 2026-09-25 | codex-lumin | root-totem-agent-tutorial
 Added a short tutorial section to newly generated Root Totems so an arriving AI coding agent can understand the Totem System before work begins.
 
@@ -899,3 +912,8 @@ Evidence:
 Distilled understanding:
 
 - This repository should model the same discipline the tool will give to other repositories: repo-native reference, append-only continuity, explicit shortfalls, and a clean distinction between current state and historical record.
+
+### 2026-10-17 | codex-lumin | public-alpha-release
+Chain-Prev: GENESIS
+Chain-Hash: f95c530d25b7d92e350a94b5de02a019272a0fb872472c2227c42b46841fcdb6
+Public release authorized by Tracey. Actual checkout: G:/AEGIS_UTILITY_APP_REPOS/AEGIS_MULTI_AGENT_TOTEM_SYSTEM. Campaign: multi-agent coding continuity and respectful collaboration through shared reference, explicit intent, attributed handoffs, and append-only evidence. Existing Cursor readiness changes preserved. Local alpha checks passed: tests, typecheck, build, package/install QA, MCP QA, VSIX package smoke, Cursor metadata, docs, preflight. Production audit: zero vulnerabilities; six high findings remain in development-only packaging dependencies. GitHub release is the distribution target; native Marketplace/Open VSX publication and social posting are not performed. See docs/public-launch.md and release notes for evidence and limitations.

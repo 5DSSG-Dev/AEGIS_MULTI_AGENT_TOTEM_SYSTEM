@@ -42,8 +42,8 @@ requireFile(join(root, "dist", "aegis-totem-vscode-0.1.1.vsix"), "VS Code VSIX")
 requireFile(releaseNotesPath, "release notes");
 
 const changelog = readFileSync(join(root, "CHANGELOG.md"), "utf8");
-if (!changelog.includes("## 0.1.1-alpha.1 - Unreleased")) {
-  fail("CHANGELOG.md missing 0.1.1-alpha.1 unreleased heading");
+if (!changelog.includes("## 0.1.1-alpha.1 - 2026-10-17")) {
+  fail("CHANGELOG.md missing 0.1.1-alpha.1 dated release heading");
 }
 
 const releaseNotes = readFileSync(releaseNotesPath, "utf8");

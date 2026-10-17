@@ -21,10 +21,12 @@ function requireIncludes(text, expected, label) {
 const readme = requireFile("README.md");
 const quickstart = requireFile("docs/quickstart.md");
 const mcpClients = requireFile("docs/mcp-clients.md");
+const cursorOpenVsx = requireFile("docs/cursor-open-vsx.md");
 const firstRepo = requireFile("docs/first-repo-walkthrough.md");
 
 requireIncludes(readme, "docs/mcp-clients.md", "README project records");
 requireIncludes(readme, "docs/first-repo-walkthrough.md", "README project records");
+requireIncludes(readme, "docs/cursor-open-vsx.md", "README project records");
 requireIncludes(readme, "aegis-totem analytics --json", "README analytics JSON");
 requireIncludes(readme, "aegis-totem start --json", "README start JSON");
 requireIncludes(readme, "For New AI Agents", "README generated Root Totem tutorial");
@@ -39,6 +41,7 @@ requireIncludes(readme, "aegis-totem doctor --json", "README doctor JSON");
 requireIncludes(readme, "aegis-totem mcp config", "README MCP config");
 requireIncludes(quickstart, "mcp-clients.md", "quickstart MCP section");
 requireIncludes(quickstart, "first-repo-walkthrough.md", "quickstart first repo section");
+requireIncludes(quickstart, "cursor-open-vsx.md", "quickstart Cursor section");
 requireIncludes(quickstart, "aegis-totem analytics --json", "quickstart analytics JSON");
 requireIncludes(quickstart, "aegis-totem start --json", "quickstart start JSON");
 requireIncludes(quickstart, "aegis-totem list", "quickstart list");
@@ -74,6 +77,18 @@ for (const expected of [
   "aegis_doctor"
 ]) {
   requireIncludes(mcpClients, expected, "MCP client examples");
+}
+
+for (const expected of [
+  "Cursor",
+  "Open VSX",
+  "Install from VSIX",
+  "dist/aegis-totem-vscode-0.1.1.vsix",
+  "Publication is a separate gate",
+  "Do not publish",
+  "npm run cursor:qa"
+]) {
+  requireIncludes(cursorOpenVsx, expected, "Cursor and Open VSX guide");
 }
 
 for (const expected of [

@@ -1,4 +1,4 @@
-# AEGIS Totem for VS Code
+# AEGIS Totem for VS Code And Cursor
 
 This extension creates and seeds a repository's AEGIS Totem structure when it is absent, then exposes the Root Totem, discovered Folder Totems, and agent lanes in grouped sidebar sections. For local alpha testing, it invokes the bundled AEGIS Totem CLI runtime for Start, status, list, analytics, validation, doctor readiness, lane messages, and Folder Totem updates, so the extension does not create a second storage system.
 
@@ -22,5 +22,7 @@ code --install-extension dist/aegis-totem-vscode-0.1.1.vsix
 ```
 
 On Windows, do not double-click the `.vsix` file. That can open the Visual Studio VSIX Installer, which cannot install VS Code extensions. In VS Code, use `Extensions` -> `...` -> `Install from VSIX...`, or run the `code --install-extension` command above.
+
+Cursor uses the same VS Code-compatible VSIX path during alpha testing. In Cursor, use `Extensions` -> `...` -> `Install from VSIX...` and select `dist/aegis-totem-vscode-0.1.1.vsix`. Open VSX publication is a separate gate and should not happen until explicitly authorized.
 
 The MCP adapter is available from the repository root with `npm run mcp` after building.
