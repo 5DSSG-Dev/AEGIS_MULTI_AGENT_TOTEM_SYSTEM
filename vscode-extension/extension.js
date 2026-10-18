@@ -16,7 +16,21 @@ function run(context, args) {
   const cli = cliInvocation(context);
   return new Promise((resolve, reject) => {
     if (!root) return reject(new Error("Open a repository folder first."));
-    cp.execFile(cli.command, [...cli.argsPrefix, ...args], { cwd: root }, (error, stdout, stderr) => error ? reject(new Error(stderr || error.message)) : resolve(stdout.trim()));
+    cp.execFile(cli.command, [...cli.argsPrefix, ...args], { cwd: root }, (error, stdout, stderr) => {
+      if (!error) return resolve(stdout.trim());
+      // Doctor uses exit 1 for a valid readiness report, including first-run gaps.
+      if (error.code === 1 && args[0] === "doctor" && args.includes("--json")) {
+        try {
+          const report = JSON.parse(stdout);
+          if (typeof report.ok === "boolean" && Array.isArray(report.checks) &&
+              report.checks.every((check) => typeof check.ok === "boolean" &&
+                typeof check.label === "string" && typeof check.detail === "string")) {
+            return resolve(stdout.trim());
+          }
+        } catch { /* Preserve command errors when stdout is not a readiness report. */ }
+      }
+      reject(new Error((stderr || stdout || error.message).trim()));
+    });
   });
 }
 function escapeHtml(value) {

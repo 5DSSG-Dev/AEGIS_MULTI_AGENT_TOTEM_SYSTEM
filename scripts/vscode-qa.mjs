@@ -3,9 +3,12 @@ import { dirname, join, normalize } from "node:path";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import yauzl from "yauzl";
+import { createRequire } from "node:module";
+import { runInNewContext } from "node:vm";
 
 const root = process.cwd();
-const vsixPath = join(root, "dist", "aegis-totem-vscode-0.1.1.vsix");
+const extensionVersion = JSON.parse(readFileSync(join(root, "vscode-extension", "package.json"), "utf8")).version;
+const vsixPath = join(root, "dist", `aegis-totem-vscode-${extensionVersion}.vsix`);
 const extensionSourcePath = join(root, "vscode-extension", "extension.js");
 
 function fail(message) {
@@ -31,6 +34,11 @@ async function readZip(path) {
     zip.readEntry();
     zip.on("entry", (entry) => {
       files.push(entry.fileName);
+      if (entry.fileName === "extension/media/aegis-totem-icon.png" && entry.uncompressedSize > 200 * 1024) {
+        zip.close();
+        reject(new Error(`Marketplace icon exceeds conservative 200 KB budget: ${entry.uncompressedSize} bytes`));
+        return;
+      }
       if (entry.fileName === "extension/package.json") {
         zip.openReadStream(entry, (error, stream) => {
           if (error) return reject(error);
@@ -119,6 +127,21 @@ async function requireBundledCliSmoke() {
     const result = JSON.parse(start.stdout);
     if (!result.ready || !existsSync(join(repoDir, "ROOT_TOTEM.md"))) {
       fail("bundled CLI start smoke did not initialize the temporary repository");
+    }
+    // Run the packaged adapter, not only the CLI: first-run doctor exits 1 with usable JSON.
+    const nativeRequire = createRequire(import.meta.url);
+    const packagedRun = runInNewContext(
+      readFileSync(join(extractDir, "extension", "extension.js"), "utf8") + "\nrun;",
+      {
+        require: (name) => name === "vscode"
+          ? { workspace: { workspaceFolders: [{ uri: { fsPath: repoDir } }] } }
+          : nativeRequire(name),
+        process, module: { exports: {} }
+      }
+    );
+    const doctor = JSON.parse(await packagedRun({ extensionPath: join(extractDir, "extension") }, ["doctor", "--json"]));
+    if (doctor.ok !== false || !doctor.checks.some((check) => !check.ok)) {
+      fail("packaged adapter did not preserve first-run Doctor readiness warnings");
     }
   } finally {
     rmSync(sandbox, { recursive: true, force: true });

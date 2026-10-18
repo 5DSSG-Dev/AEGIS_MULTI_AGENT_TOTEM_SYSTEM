@@ -2,35 +2,91 @@
   "name": "aegis-totem-vscode",
   "displayName": "AEGIS Totem",
   "description": "Create and use repo-native Totems for multi-agent reference and communications.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "thelight1122",
   "license": "MIT",
   "icon": "media/aegis-totem-icon.png",
-  "keywords": ["aegis", "totem", "multi-agent", "repo-memory", "cursor", "open-vsx"],
+  "keywords": [
+    "aegis",
+    "totem",
+    "multi-agent",
+    "repo-memory",
+    "cursor",
+    "open-vsx"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/thelight1122/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git",
+    "url": "https://github.com/5DSSG-DEVthelight1122/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git",
     "directory": "vscode-extension"
   },
-  "engines": { "vscode": "^1.85.0" },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
   "main": "./extension.js",
-  "files": ["extension.js", "README.md", "LICENSE", "media/aegis-totem-icon.png", "cli-dist"],
-  "activationEvents": ["onStartupFinished"],
-  "categories": ["Other"],
+  "files": [
+    "extension.js",
+    "README.md",
+    "LICENSE",
+    "media/aegis-totem-icon.png",
+    "cli-dist"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "categories": [
+    "Other"
+  ],
   "contributes": {
     "commands": [
-      { "command": "aegisTotem.refresh", "title": "AEGIS: Refresh" },
-      { "command": "aegisTotem.start", "title": "AEGIS Totem: Start" },
-      { "command": "aegisTotem.initialize", "title": "AEGIS: Initialize System", "icon": "$(rocket)" },
-      { "command": "aegisTotem.openRoot", "title": "AEGIS: Open Root Totem" },
-      { "command": "aegisTotem.status", "title": "AEGIS: Show Status" },
-      { "command": "aegisTotem.list", "title": "AEGIS: Show List" },
-      { "command": "aegisTotem.analytics", "title": "AEGIS: Show Analytics" },
-      { "command": "aegisTotem.validate", "title": "AEGIS: Validate" },
-      { "command": "aegisTotem.doctor", "title": "AEGIS: Run Doctor" },
-      { "command": "aegisTotem.liveTest", "title": "AEGIS: Live Test Checklist" },
-      { "command": "aegisTotem.sendMessage", "title": "AEGIS: Send Lane Message" },
-      { "command": "aegisTotem.appendFolderUpdate", "title": "AEGIS: Append Folder Update" }
+      {
+        "command": "aegisTotem.refresh",
+        "title": "AEGIS: Refresh"
+      },
+      {
+        "command": "aegisTotem.start",
+        "title": "AEGIS Totem: Start"
+      },
+      {
+        "command": "aegisTotem.initialize",
+        "title": "AEGIS: Initialize System",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "aegisTotem.openRoot",
+        "title": "AEGIS: Open Root Totem"
+      },
+      {
+        "command": "aegisTotem.status",
+        "title": "AEGIS: Show Status"
+      },
+      {
+        "command": "aegisTotem.list",
+        "title": "AEGIS: Show List"
+      },
+      {
+        "command": "aegisTotem.analytics",
+        "title": "AEGIS: Show Analytics"
+      },
+      {
+        "command": "aegisTotem.validate",
+        "title": "AEGIS: Validate"
+      },
+      {
+        "command": "aegisTotem.doctor",
+        "title": "AEGIS: Run Doctor"
+      },
+      {
+        "command": "aegisTotem.liveTest",
+        "title": "AEGIS: Live Test Checklist"
+      },
+      {
+        "command": "aegisTotem.sendMessage",
+        "title": "AEGIS: Send Lane Message"
+      },
+      {
+        "command": "aegisTotem.appendFolderUpdate",
+        "title": "AEGIS: Append Folder Update"
+      }
     ],
     "viewsContainers": {
       "activitybar": [
@@ -41,7 +97,14 @@
         }
       ]
     },
-    "views": { "aegisTotem": [{ "id": "aegisTotemView", "name": "AEGIS Totem" }] },
+    "views": {
+      "aegisTotem": [
+        {
+          "id": "aegisTotemView",
+          "name": "AEGIS Totem"
+        }
+      ]
+    },
     "viewsWelcome": [
       {
         "view": "aegisTotemView",
@@ -50,8 +113,16 @@
     ],
     "menus": {
       "view/title": [
-        { "command": "aegisTotem.initialize", "when": "view == aegisTotemView", "group": "navigation@1" },
-        { "command": "aegisTotem.refresh", "when": "view == aegisTotemView", "group": "navigation@2" }
+        {
+          "command": "aegisTotem.initialize",
+          "when": "view == aegisTotemView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "aegisTotem.refresh",
+          "when": "view == aegisTotemView",
+          "group": "navigation@2"
+        }
       ]
     }
   }

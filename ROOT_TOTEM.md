@@ -917,3 +917,18 @@ Distilled understanding:
 Chain-Prev: GENESIS
 Chain-Hash: f95c530d25b7d92e350a94b5de02a019272a0fb872472c2227c42b46841fcdb6
 Public release authorized by Tracey. Actual checkout: G:/AEGIS_UTILITY_APP_REPOS/AEGIS_MULTI_AGENT_TOTEM_SYSTEM. Campaign: multi-agent coding continuity and respectful collaboration through shared reference, explicit intent, attributed handoffs, and append-only evidence. Existing Cursor readiness changes preserved. Local alpha checks passed: tests, typecheck, build, package/install QA, MCP QA, VSIX package smoke, Cursor metadata, docs, preflight. Production audit: zero vulnerabilities; six high findings remain in development-only packaging dependencies. GitHub release is the distribution target; native Marketplace/Open VSX publication and social posting are not performed. See docs/public-launch.md and release notes for evidence and limitations.
+
+### 2026-10-17 | codex-lumin | marketplace-icon-size-fix
+Chain-Prev: f95c530d25b7d92e350a94b5de02a019272a0fb872472c2227c42b46841fcdb6
+Chain-Hash: 7dfc852c2c700ed459d319b0e0afd7f3322731d0daf102bf3541902d1262a0e1
+Marketplace upload rejected icon above 1024 KiB. Lossless PNG recompression and removal of ancillary caBX metadata reduced icon from 1080311 to 1038986 bytes; original saved outside repo. Decoded scanlines exactly match; artwork and 1254x1254 dimensions preserved. Added packaged icon size rejection in scripts/vscode-qa.mjs. npm run vscode:qa passed, including build, packaged asset checks, extraction and bundled CLI smoke. Rebuilt local dist/aegis-totem-vscode-0.1.1.vsix is ready for retry; upload acceptance remains unverified. Existing GitHub release asset has not been replaced.
+
+### 2026-10-17 | codex-lumin | marketplace-small-icon-retry
+Chain-Prev: 7dfc852c2c700ed459d319b0e0afd7f3322731d0daf102bf3541902d1262a0e1
+Chain-Hash: e55acf1532ad8259beac171b4251e050609a85518b796954bf138d86db806d0b
+User reported same Marketplace error after near-limit lossless fix. Resized logo to 256x256 RGBA PNG, 60359 bytes. Rebuilt VSIX and passed vscode:qa. Independently inspected manifest-selected icon inside ZIP: 60359 bytes, 256x256. Distinct upload copy: dist/AEGIS-TOTEM-MARKETPLACE-SMALL-ICON.vsix. Original high-resolution icon remains backed up outside repo. Prior lossless artifact acceptance was never proven. Marketplace retry pending.
+
+### 2026-10-17 | codex-lumin | doctor-readiness-runtime-fix
+Chain-Prev: e55acf1532ad8259beac171b4251e050609a85518b796954bf138d86db806d0b
+Chain-Hash: b772eec15ecff0631cca3f5bce317ca453532c6882dbd8330b09e63c1c3835ef
+User Marketplace smoke exposed first-run doctor --json exit 1 being discarded by extension run(). Reproduced with actual installed CLI and Code.exe in Electron Node mode: old adapter rejects, fixed adapter returns valid six-check readiness report. Only schema-valid Doctor JSON at exit 1 is accepted; other command errors remain errors. Extension version bumped to 0.1.2; CLI remains 0.1.1. Added five regression cases and packaged adapter Doctor smoke, dynamic VSIX version discovery, retained small icon. vscode:qa passed. Manual UI retry required before registry update. Prior flat-folder test instructions were inaccurate: seedFolderTotems requires branch folders with child directories.

@@ -3,7 +3,8 @@ import { join } from "node:path";
 import yauzl from "yauzl";
 
 const root = process.cwd();
-const vsixPath = join(root, "dist", "aegis-totem-vscode-0.1.1.vsix");
+const extensionVersion = JSON.parse(readFileSync(join(root, "vscode-extension", "package.json"), "utf8")).version;
+const vsixPath = join(root, "dist", `aegis-totem-vscode-${extensionVersion}.vsix`);
 
 function fail(message) {
   console.error(`Cursor QA failed: ${message}`);

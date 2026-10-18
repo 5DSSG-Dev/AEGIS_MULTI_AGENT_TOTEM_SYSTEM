@@ -38,7 +38,8 @@ for (const script of requiredScripts) {
 
 requireFile(join(root, "dist", "src", "cli.js"), "built CLI");
 requireFile(join(root, "dist", "src", "mcp-server.js"), "built MCP server");
-requireFile(join(root, "dist", "aegis-totem-vscode-0.1.1.vsix"), "VS Code VSIX");
+const extensionVersion = JSON.parse(readFileSync(join(root, "vscode-extension", "package.json"), "utf8")).version;
+requireFile(join(root, "dist", `aegis-totem-vscode-${extensionVersion}.vsix`), "VS Code VSIX");
 requireFile(releaseNotesPath, "release notes");
 
 const changelog = readFileSync(join(root, "CHANGELOG.md"), "utf8");

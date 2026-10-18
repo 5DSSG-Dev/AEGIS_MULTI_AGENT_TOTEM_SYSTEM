@@ -1,10 +1,11 @@
-import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, readFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 
 const root = process.cwd();
 const outDir = join(root, "dist");
-const packagePath = join(outDir, "aegis-totem-vscode-0.1.1.vsix");
+const extensionVersion = JSON.parse(readFileSync(join(root, "vscode-extension", "package.json"), "utf8")).version;
+const packagePath = join(outDir, `aegis-totem-vscode-${extensionVersion}.vsix`);
 const vsceBin = join(root, "node_modules", "@vscode", "vsce", "vsce");
 const extensionDir = join(root, "vscode-extension");
 const bundledCliDir = join(extensionDir, "cli-dist");
