@@ -14,7 +14,7 @@ Then install the generated package in Cursor:
 
 ```text
 Extensions -> ... -> Install from VSIX...
-dist/aegis-totem-vscode-0.1.1.vsix
+dist/aegis-totem-vscode-0.1.3.vsix
 ```
 
 After installation, open a temporary repository in Cursor and run the same alpha smoke path:
@@ -24,7 +24,7 @@ After installation, open a temporary repository in Cursor and run the same alpha
 3. Confirm Doctor readiness opens.
 4. Confirm Root Totem, Folder Totems, and lanes appear in the sidebar.
 5. Open `AEGIS: Live Test Checklist`.
-6. Confirm the panel reports the bundled VSIX runtime and CLI version `0.1.1`.
+6. Confirm the panel reports the bundled VSIX runtime and CLI version `0.1.2`.
 7. Send one lane message in a temporary repo.
 8. Append one Folder Totem update in a temporary repo.
 9. Run `AEGIS: Validate`.
@@ -45,7 +45,7 @@ Then verify:
 - The VSIX still contains the bundled alpha CLI runtime.
 - The extension metadata points to the AEGIS Totem repository.
 - The Cursor guide, VS Code README, release checklist, and alpha release notes are current.
-- The package has been manually smoke-tested in Cursor from `dist/aegis-totem-vscode-0.1.1.vsix`.
+- The package has been manually smoke-tested in Cursor from `dist/aegis-totem-vscode-0.1.3.vsix`.
 
 ## Product Boundary
 

@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const root = process.cwd();
+const extensionVersion = JSON.parse(readFileSync(join(root, "vscode-extension", "package.json"), "utf8")).version;
 
 function fail(message) {
   console.error(`Docs QA failed: ${message}`);
@@ -83,7 +84,7 @@ for (const expected of [
   "Cursor",
   "Open VSX",
   "Install from VSIX",
-  "dist/aegis-totem-vscode-0.1.1.vsix",
+  `dist/aegis-totem-vscode-${extensionVersion}.vsix`,
   "Publication is a separate gate",
   "Do not publish",
   "npm run cursor:qa"

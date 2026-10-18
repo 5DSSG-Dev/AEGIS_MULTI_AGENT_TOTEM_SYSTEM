@@ -139,7 +139,7 @@ Build and install the local VS Code extension package:
 
 ```bash
 npm run vscode:qa
-code --install-extension dist/aegis-totem-vscode-0.1.1.vsix
+code --install-extension dist/aegis-totem-vscode-0.1.3.vsix
 ```
 
 On Windows, do not double-click the `.vsix` file. That can open the Visual Studio VSIX Installer, which cannot install VS Code extensions. In VS Code or Cursor, use `Extensions` -> `...` -> `Install from VSIX...`, or run the `code --install-extension` command above for VS Code.

@@ -68,7 +68,7 @@ const docs = [
 for (const [label, text] of docs) {
   requireIncludes(text, "Cursor", label);
   requireIncludes(text, "Open VSX", label);
-  requireIncludes(text, "dist/aegis-totem-vscode-0.1.1.vsix", label);
+  requireIncludes(text, `dist/aegis-totem-vscode-${extensionVersion}.vsix`, label);
 }
 
 const cursorDoc = docs.find(([label]) => label === "docs/cursor-open-vsx.md")[1];

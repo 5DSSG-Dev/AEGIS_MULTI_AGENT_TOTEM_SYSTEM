@@ -947,3 +947,8 @@ Tracey confirms Flow/Locus evolution note was intentionally moved to DataQuad be
 Chain-Prev: bcfae45203b0a2872c30f7b7448530e61eab0255b76038e45d4f7319d072f6b8
 Chain-Hash: f4aa168d8e6d0cd356fae6bf05eb4082757c315339b8d5cc1fddd7d365e7222f
 Public npm0.1.1 installs but exits silently under NVM linked global directory. Root cause direct-invocation guard compared import.meta physical path with symlink argv path. Compare realpathSync paths instead. Linked-directory version/help tests failed before fix and pass afterward. CLI bumped0.1.2, extension remains0.1.3. Metadata bin/repository normalized; npm dry-run emits no autocorrection warning. Full alpha check passes including fresh package install, MCP, VSIX adapter/CLI, Cursor/docs/preflight. Publication and user global upgrade still pending.
+
+2026-10-18 Release distribution correction
+Chain-Prev: f4aa168d8e6d0cd356fae6bf05eb4082757c315339b8d5cc1fddd7d365e7222f
+Chain-Hash: 785853798ffef3ecebcb3f8340698c6f209bc0d835f26df7aefaf1e75b803536
+Corrected release documentation for npm CLI 0.1.2 and editor extension 0.1.3. Full alpha checks passed with 53 tests; downloaded the actual published npm tarball and built the corrected VSIX, with SHA256SUMS. Public npm latest still needs private owner authentication; registry extension uploads and broader public-global smoke remain pending. Added a syntax-checked user-run public CLI smoke script. GitHub issue list returned no open issues; this work addresses release gaps.

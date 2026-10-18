@@ -20,23 +20,24 @@ Try it with two coding agents on a small repository and share what helped, what 
 
 ## Install
 
-Download the CLI tarball or VS Code-compatible VSIX from the [public alpha release](https://github.com/thelight1122/AEGIS_MULTI_AGENT_TOTEM_SYSTEM/releases/tag/v0.1.1-alpha.1).
-
-For the CLI, download `aegis-totem-0.1.1.tgz`, then run from the download directory:
+The CLI is published on npm. Install the corrected public alpha:
 
 ```bash
-npm install -g ./aegis-totem-0.1.1.tgz
+npm install -g aegis-totem@alpha
+aegis-totem --version
 aegis-totem --help
 ```
 
-Node.js 20 or newer and npm are required. Installation may fetch runtime dependencies from npm. The CLI is not yet published to the npm registry.
+The CLI should report **0.1.2**. Node.js 20 or newer and npm are required. The CLI and extension versions are independent.
 
-For VS Code, use **Extensions -> ... -> Install from VSIX...** and select `aegis-totem-vscode-0.1.1.vsix`. The package bundles the CLI. Cursor uses the same VSIX; manual editor compatibility remains an alpha feedback area.
+For VS Code, search `@id:thelight1122.aegis-totem-vscode` in Extensions. Marketplace and Open VSX version **0.1.2** passed the first-run Doctor check, but lacks the Git-metadata exclusions prepared in extension **0.1.3**. Until the registry update is verified, use the corrected 0.1.3 VSIX from the [current GitHub release](https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM/releases/tag/v0.1.2-alpha.1): **Extensions -> ... -> Install from VSIX...**. The VSIX bundles the CLI; a separate global npm installation is not required for the extension.
+
+Avoid using older extension versions on active repositories: their folder watcher can create Totems inside Git metadata. Existing misplaced metadata files require separate recovery; installing the fixed extension prevents new writes but does not clean them up.
 
 To build from source:
 
 ```bash
-git clone https://github.com/thelight1122/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git
+git clone https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git
 cd AEGIS_MULTI_AGENT_TOTEM_SYSTEM
 npm ci
 npm run build
@@ -130,7 +131,7 @@ Build an installable VS Code package locally:
 
 ```bash
 npm run package:vscode
-code --install-extension dist/aegis-totem-vscode-0.1.1.vsix
+code --install-extension dist/aegis-totem-vscode-0.1.3.vsix
 ```
 
 For local alpha VSIX testing, the package includes a bundled CLI runtime, so the extension can run before the npm package is published.
@@ -185,7 +186,7 @@ See [MCP client examples](docs/mcp-clients.md) for Codex, Cursor, Claude Desktop
 - [MCP client examples](docs/mcp-clients.md)
 - [Cursor and Open VSX readiness](docs/cursor-open-vsx.md)
 - [Release checklist](docs/release-checklist.md)
-- [Draft release notes](docs/releases/v0.1.1-alpha.1.md)
+- [Current release notes](docs/releases/v0.1.2-alpha.1.md)
 - [Changelog](CHANGELOG.md)
 - [Security policy](SECURITY.md)
 - [MVP implementation plan](docs/superpowers/plans/2026-09-23-aegis-totem-mvp.md)

@@ -18,11 +18,11 @@ For local alpha testing, the VSIX bundles the AEGIS Totem CLI runtime used by th
 
 ```bash
 npm run package:vscode
-code --install-extension dist/aegis-totem-vscode-0.1.1.vsix
+code --install-extension dist/aegis-totem-vscode-0.1.3.vsix
 ```
 
 On Windows, do not double-click the `.vsix` file. That can open the Visual Studio VSIX Installer, which cannot install VS Code extensions. In VS Code, use `Extensions` -> `...` -> `Install from VSIX...`, or run the `code --install-extension` command above.
 
-Cursor uses the same VS Code-compatible VSIX path during alpha testing. In Cursor, use `Extensions` -> `...` -> `Install from VSIX...` and select `dist/aegis-totem-vscode-0.1.1.vsix`. Open VSX publication is a separate gate and should not happen until explicitly authorized.
+Cursor uses the same VS Code-compatible VSIX path during alpha testing. In Cursor, use `Extensions` -> `...` -> `Install from VSIX...` and select `dist/aegis-totem-vscode-0.1.3.vsix`. Open VSX publication is a separate gate and should not happen until explicitly authorized.
 
 The MCP adapter is available from the repository root with `npm run mcp` after building.

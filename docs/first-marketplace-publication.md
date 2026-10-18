@@ -10,8 +10,8 @@ Verified against official documentation on 2026-10-17. These instructions prepar
 - Full identifier: thelight1122.aegis-totem-vscode
 - Version in existing package: 0.1.1 (early public alpha)
 - License: MIT; distributed free
-- Package: G:\AEGIS_UTILITY_APP_REPOS\AEGIS_MULTI_AGENT_TOTEM_SYSTEM\dist\aegis-totem-vscode-0.1.1.vsix
-- GitHub release: https://github.com/thelight1122/AEGIS_MULTI_AGENT_TOTEM_SYSTEM/releases/tag/v0.1.1-alpha.1
+- Package: G:\AEGIS_UTILITY_APP_REPOS\AEGIS_MULTI_AGENT_TOTEM_SYSTEM\dist\aegis-totem-vscode-0.1.3.vsix
+- GitHub release: https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM/releases/tag/v0.1.1-alpha.1
 
 Publisher ID is the account identity, not the product title. The manifest does not prove ownership. If thelight1122 is unavailable, stop and tell Codex before creating a substitute: changing it requires rebuilding and rechecking the VSIX. An AEGIS Totem display name can still be used under this ID.
 
@@ -55,7 +55,7 @@ After namespace creation/access succeeds:
 
 ```powershell
 try {
-    npx --yes ovsx publish '.\dist\aegis-totem-vscode-0.1.1.vsix'
+    npx --yes ovsx publish '.\dist\aegis-totem-vscode-0.1.3.vsix'
 } finally {
     Remove-Item Env:OVSX_PAT -ErrorAction SilentlyContinue
 }
