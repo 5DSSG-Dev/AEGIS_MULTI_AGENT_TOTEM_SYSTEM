@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Validate npm package
+        run: npm pack --dry-run
+
+      - name: Local install QA
+        run: npm run local-install:qa
+
+      - name: MCP QA
+        run: npm run mcp:qa
+
+      - name: VS Code QA
+        run: npm run vscode:qa
+
+      - name: Cursor compatibility metadata QA
+        run: npm run cursor:qa
+
+      - name: Production dependency audit
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Docs QA
+        run: npm run docs:qa
+
+      - name: Release preflight
+        run: npm run release:preflight
