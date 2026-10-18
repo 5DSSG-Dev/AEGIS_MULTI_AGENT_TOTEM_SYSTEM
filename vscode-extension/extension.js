@@ -274,7 +274,9 @@ async function createFolderTotemForPath(filePath, provider) {
   const folder = fs.existsSync(filePath) && fs.statSync(filePath).isDirectory() ? filePath : path.dirname(filePath);
   const candidates = [folder, path.dirname(folder)].filter((candidate, index, all) => all.indexOf(candidate) === index);
   for (const candidate of candidates) {
-    if (candidate === root || candidate.includes(`${path.sep}.aegis`)) continue;
+    const relative = path.relative(root, candidate);
+    const excluded = new Set([".aegis", ".git", ".hg", ".svn", ".vscode", "coverage", "dist", "node_modules", "out", "target", "tmp"]);
+    if (!relative || path.isAbsolute(relative) || relative.split(path.sep).some((part) => part === ".." || excluded.has(part.toLowerCase()))) continue;
     const childDirectories = fs.readdirSync(candidate, { withFileTypes: true }).filter((entry) => entry.isDirectory() && ![".aegis", ".git", ".hg", ".svn", ".vscode", "coverage", "dist", "node_modules", "out", "target", "tmp"].includes(entry.name));
     if (childDirectories.length === 0) continue;
     const totemPath = path.join(candidate, "TOTEM.md");

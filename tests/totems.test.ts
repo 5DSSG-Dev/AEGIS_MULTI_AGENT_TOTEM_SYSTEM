@@ -6,6 +6,11 @@ import { initTotemRepo } from "../src/core/init.js";
 import { appendFolderTotem, createFolderTotem } from "../src/core/totems.js";
 
 describe("folder Totems", () => {
+  it.each([".git", ".git/refs/codex", "nested/.git/refs", ".GIT/refs"])("rejects metadata target %s", async (folder) => {
+    const root = await createTempRepo();
+    await expect(createFolderTotem(root, folder)).rejects.toThrow("version-control metadata");
+    await expect(readFile(join(root, folder, "TOTEM.md"))).rejects.toThrow("ENOENT");
+  });
   it("creates and appends a folder Totem", async () => {
     const root = await createTempRepo();
     await initTotemRepo(root);

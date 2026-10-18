@@ -1,5 +1,5 @@
 import { mkdir, readdir, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import { appendChained } from "../fs/append.js";
 import { ensureInsideRoot } from "../fs/repo.js";
 import { sanitizeLaneName } from "./schema.js";
@@ -9,6 +9,9 @@ const ignoredFolderElements = new Set([".aegis", ".git", ".hg", ".next", ".svn",
 
 export async function createFolderTotem(rootDir: string, folderPath: string): Promise<string> {
   const targetFolder = ensureInsideRoot(rootDir, join(rootDir, folderPath));
+  if (relative(rootDir, targetFolder).split(/[\\/]/).some((part) => [".git", ".hg", ".svn"].includes(part.toLowerCase()))) {
+    throw new Error("Cannot create a Folder Totem inside version-control metadata");
+  }
   await mkdir(targetFolder, { recursive: true });
   const totemPath = join(targetFolder, "TOTEM.md");
   const entries = await readdir(targetFolder, { withFileTypes: true });
