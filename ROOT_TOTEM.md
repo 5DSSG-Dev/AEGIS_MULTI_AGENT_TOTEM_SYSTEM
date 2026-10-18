@@ -942,3 +942,8 @@ Authorized local recovery: quarantined 20 misplaced TOTEM.md files from .git to 
 Chain-Prev: a4d7ff9e47db1e5d0634883b630f1bf2ecb43888d35829fefd1c5812070f37b4
 Chain-Hash: bcfae45203b0a2872c30f7b7448530e61eab0255b76038e45d4f7319d072f6b8
 Tracey confirms Flow/Locus evolution note was intentionally moved to DataQuad because it is not relevant to ordinary Totem users. Supersedes recovery assumption in preceding entry: removed only the untracked copy restored during repair, leaving the intended deletion intact. User authorizes committing and pushing verified repair; asks npm login guidance. Extension installation is not included in this action.
+
+### 2026-10-18 | codex-lumin | npm-linked-path-startup
+Chain-Prev: bcfae45203b0a2872c30f7b7448530e61eab0255b76038e45d4f7319d072f6b8
+Chain-Hash: f4aa168d8e6d0cd356fae6bf05eb4082757c315339b8d5cc1fddd7d365e7222f
+Public npm0.1.1 installs but exits silently under NVM linked global directory. Root cause direct-invocation guard compared import.meta physical path with symlink argv path. Compare realpathSync paths instead. Linked-directory version/help tests failed before fix and pass afterward. CLI bumped0.1.2, extension remains0.1.3. Metadata bin/repository normalized; npm dry-run emits no autocorrection warning. Full alpha check passes including fresh package install, MCP, VSIX adapter/CLI, Cursor/docs/preflight. Publication and user global upgrade still pending.

@@ -121,7 +121,7 @@ async function requireBundledCliSmoke() {
     const cliPath = join(extractDir, "extension", "cli-dist", "src", "cli.js");
     const version = spawnSync(process.execPath, [cliPath, "--version"], { cwd: repoDir, encoding: "utf8" });
     if (version.status !== 0) fail(`bundled CLI version failed: ${version.stderr || version.stdout}`);
-    if (version.stdout.trim() !== "0.1.1") fail(`bundled CLI version mismatch: ${version.stdout.trim()}`);
+    if (version.stdout.trim() !== JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version) fail(`bundled CLI version mismatch: ${version.stdout.trim()}`);
     const start = spawnSync(process.execPath, [cliPath, "start", "--json"], { cwd: repoDir, encoding: "utf8" });
     if (start.status !== 0) fail(`bundled CLI start failed: ${start.stderr || start.stdout}`);
     const result = JSON.parse(start.stdout);

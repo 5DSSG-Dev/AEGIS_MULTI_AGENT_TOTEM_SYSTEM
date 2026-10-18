@@ -24,9 +24,9 @@ function requireFile(path, label) {
 }
 
 if (packageJson.name !== "aegis-totem") fail(`unexpected package name ${packageJson.name}`);
-if (packageJson.version !== "0.1.1") fail(`unexpected version ${packageJson.version}`);
+if (!/^\d+\.\d+\.\d+$/.test(packageJson.version)) fail(`unexpected version ${packageJson.version}`);
 if (packageJson.license !== "MIT") fail(`unexpected license ${packageJson.license}`);
-if (packageJson.bin?.["aegis-totem"] !== "./dist/src/cli.js") fail("missing aegis-totem bin target");
+if (packageJson.bin?.["aegis-totem"] !== "dist/src/cli.js") fail("missing aegis-totem bin target");
 
 for (const file of requiredPackageFiles) {
   if (!packageJson.files?.includes(file)) fail(`package.json files missing ${file}`);
@@ -43,13 +43,13 @@ requireFile(join(root, "dist", `aegis-totem-vscode-${extensionVersion}.vsix`), "
 requireFile(releaseNotesPath, "release notes");
 
 const changelog = readFileSync(join(root, "CHANGELOG.md"), "utf8");
-if (!changelog.includes("## 0.1.1-alpha.1 - 2026-10-17")) {
-  fail("CHANGELOG.md missing 0.1.1-alpha.1 dated release heading");
+if (!changelog.includes(`## ${packageJson.version}-alpha.1 -`)) {
+  fail("CHANGELOG.md missing current dated release heading");
 }
 
 const releaseNotes = readFileSync(releaseNotesPath, "utf8");
 for (const expected of [
-  "AEGIS Totem v0.1.1-alpha.1",
+  `AEGIS Totem ${releaseTag}`,
   "npm publish",
   "GitHub Release",
   "VS Code"

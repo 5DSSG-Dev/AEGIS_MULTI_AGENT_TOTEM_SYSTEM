@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { realpathSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { initTotemRepo, startTotemRepo } from "./core/init.js";
@@ -17,7 +18,7 @@ export function buildProgram(): Command {
   const program = new Command()
     .name("aegis-totem")
     .description("Append-only repo memory and agent lanes for AI-assisted development.")
-    .version("0.1.1");
+    .version("0.1.2");
 
   program.command("init").description("Initialize AEGIS Totem files in the current repository.")
     .action(async () => { await initTotemRepo(process.cwd()); console.log("Initialized AEGIS Totem."); });
@@ -106,6 +107,6 @@ export function buildProgram(): Command {
   return program;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+if (process.argv[1] && realpathSync(fileURLToPath(import.meta.url)) === realpathSync(resolve(process.argv[1]))) {
   buildProgram().parse(process.argv);
 }

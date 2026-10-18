@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.2-alpha.1 - 2026-10-18
+
+- Fix silent CLI startup through NVM directory symlinks by comparing resolved file paths.
+- Add linked-path regression coverage for version/help and build before tests.
+- Normalize package bin/repository metadata and use dynamic CLI version in package checks.
+
+
 ## 0.1.1-alpha.1 - 2026-10-17
 
 Public alpha foundation for AEGIS Totem. Free MIT release focused on multi-agent coding continuity and respectful collaboration.

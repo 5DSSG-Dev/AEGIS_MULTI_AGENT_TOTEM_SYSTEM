@@ -1,6 +1,6 @@
 {
   "name": "aegis-totem",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Append-only repo memory and agent lanes for AI-assisted development.",
   "keywords": [
     "aegis",
@@ -18,7 +18,7 @@
   ],
   "type": "module",
   "bin": {
-    "aegis-totem": "./dist/src/cli.js"
+    "aegis-totem": "dist/src/cli.js"
   },
   "scripts": {
     "alpha:check": "npm test && npm run typecheck && npm run build && npm pack --dry-run && npm run local-install:qa && npm run mcp:qa && npm run vscode:qa && npm run cursor:qa && npm run docs:qa && npm run release:preflight",
@@ -30,7 +30,7 @@
     "mcp:qa": "npm run build && node scripts/mcp-qa.mjs",
     "package:vscode": "npm run build && node scripts/package-vscode.mjs",
     "release:preflight": "node scripts/release-preflight.mjs",
-    "test": "vitest run",
+    "test": "npm run build && vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "cursor:qa": "node scripts/cursor-qa.mjs",
     "vscode:qa": "npm run package:vscode && node scripts/vscode-qa.mjs",
@@ -55,7 +55,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git"
+    "url": "git+https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git"
   },
   "homepage": "https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM#readme",
   "bugs": {
