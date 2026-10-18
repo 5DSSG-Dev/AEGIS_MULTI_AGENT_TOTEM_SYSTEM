@@ -1,58 +1,44 @@
-name: CI
+name: Publish npm package
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Validate only; leave enabled until npm publishing access is configured
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-npm
+  cancel-in-progress: false
 
 jobs:
-  verify:
-    name: Verify
+  publish:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install
-        run: npm ci
-
-      - name: Test
-        run: npm test
-
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Build
-        run: npm run build
-
-      - name: Validate npm package
-        run: npm pack --dry-run
-
-      - name: Local install QA
-        run: npm run local-install:qa
-
-      - name: MCP QA
-        run: npm run mcp:qa
-
-      - name: VS Code QA
-        run: npm run vscode:qa
-
-      - name: Cursor compatibility metadata QA
-        run: npm run cursor:qa
-
-      - name: Production dependency audit
-        run: npm audit --omit=dev --audit-level=high
-
-      - name: Docs QA
-        run: npm run docs:qa
-
-      - name: Release preflight
-        run: npm run release:preflight
+          node-version: '22'
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run alpha:check
+      - name: Validate publication without uploading
+        run: npm publish --dry-run --tag alpha
+      - name: Publish public alpha
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo 'Configure the NPM_TOKEN repository secret before publishing.'
+            exit 1
+          fi
+          npm publish --access public --tag alpha --provenance

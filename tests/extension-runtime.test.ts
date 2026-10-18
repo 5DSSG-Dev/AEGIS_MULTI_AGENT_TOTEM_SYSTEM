@@ -37,3 +37,25 @@ describe("extension CLI result handling", () => {
     await expect(invoke(["status"], "ready\n", 0)).resolves.toBe("ready");
   });
 });
+
+
+describe("extension metadata exclusion", () => {
+  it.each([".git/refs/codex", ".GIT/refs/codex", "nested/.git/refs", ".hg/store", ".svn/pristine", "node_modules/tool", "../outside/folder"])("ignores watcher events in %s", async (relative) => {
+    let reads = 0;
+    let launches = 0;
+    const root = process.cwd();
+    const watch = runInNewContext(source + "\ncreateFolderTotemForPath;", {
+      require: (name: string) => {
+        if (name === "vscode") return { workspace: { workspaceFolders: [{ uri: { fsPath: root } }] } };
+        if (name === "node:path") return path;
+        if (name === "node:fs") return { existsSync: () => true, statSync: () => ({ isDirectory: () => true }), readdirSync: () => { reads++; return []; } };
+        if (name === "node:child_process") return { execFile: () => { launches++; } };
+        throw new Error(name);
+      },
+      process, module: { exports: {} }
+    });
+    await watch(path.resolve(root, relative), { context: { extensionPath: root }, refresh: () => {} });
+    expect(reads).toBe(0);
+    expect(launches).toBe(0);
+  });
+});

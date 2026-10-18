@@ -2,7 +2,7 @@
   "name": "aegis-totem-vscode",
   "displayName": "AEGIS Totem",
   "description": "Create and use repo-native Totems for multi-agent reference and communications.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "thelight1122",
   "license": "MIT",
   "icon": "media/aegis-totem-icon.png",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/5DSSG-DEVthelight1122/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git",
+    "url": "https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git",
     "directory": "vscode-extension"
   },
   "engines": {

@@ -33,7 +33,8 @@
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "cursor:qa": "node scripts/cursor-qa.mjs",
-    "vscode:qa": "npm run package:vscode && node scripts/vscode-qa.mjs"
+    "vscode:qa": "npm run package:vscode && node scripts/vscode-qa.mjs",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.1",
@@ -47,9 +48,17 @@
     "typescript": "^5.5.3",
     "vitest": "^4.1.11"
   },
-    "publishConfig": {
-  "@5DSSG-Dev:registry":"https://npm.pkg.github.com"
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git"
+  },
+  "homepage": "https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM#readme",
+  "bugs": {
+    "url": "https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM/issues"
+  }
 }
-

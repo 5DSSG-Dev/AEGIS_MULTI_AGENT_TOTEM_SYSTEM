@@ -52,7 +52,7 @@ if (!existsSync(vsixPath)) {
 
 const manifest = await readManifest(vsixPath);
 if (manifest.engines?.vscode !== "^1.85.0") fail(`unexpected VS Code engine ${manifest.engines?.vscode}`);
-if (manifest.repository?.url !== "https://github.com/thelight1122/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git") {
+if (manifest.repository?.url !== "https://github.com/5DSSG-Dev/AEGIS_MULTI_AGENT_TOTEM_SYSTEM.git") {
   fail("manifest repository URL does not point to the public AEGIS Totem repository");
 }
 if (!manifest.keywords?.includes("cursor")) fail("manifest missing cursor keyword");
