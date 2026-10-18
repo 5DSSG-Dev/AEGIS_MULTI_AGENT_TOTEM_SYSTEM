@@ -40,7 +40,8 @@
     "commands": [
       {
         "command": "aegisTotem.refresh",
-        "title": "AEGIS: Refresh"
+        "title": "AEGIS: Refresh",
+        "icon": "$(refresh)"
       },
       {
         "command": "aegisTotem.start",
@@ -101,7 +102,8 @@
       "aegisTotem": [
         {
           "id": "aegisTotemView",
-          "name": "AEGIS Totem"
+          "name": "AEGIS Totem",
+          "icon": "media/aegis-totem-icon.png"
         }
       ]
     },
