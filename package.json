@@ -48,7 +48,7 @@
     "vitest": "^4.1.11"
   },
     "publishConfig": {
-  "@5DSSG-Dev:registry": "https://npm.pkg.github.com"
+  "@5DSSG-Dev:registry":"https://npm.pkg.github.com"
   },
   "license": "MIT"
 }
