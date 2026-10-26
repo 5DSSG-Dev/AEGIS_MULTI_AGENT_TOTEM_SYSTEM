@@ -21,7 +21,7 @@ for (const dependency of ["commander", "zod"]) {
 
 const result = spawnSync(
   process.execPath,
-  [vsceBin, "package", "--out", packagePath],
+  [vsceBin, "package", "--no-dependencies", "--out", packagePath],
   {
     cwd: extensionDir,
     stdio: "inherit",
